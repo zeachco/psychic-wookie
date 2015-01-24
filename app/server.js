@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var serverPort = 3000;
-var serveIndex = require('serve-index');
+//var serveIndex = require('serve-index');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.static(__dirname + '/public'));
-app.use(serveIndex(__dirname + '/public'));
+//app.use(serveIndex(__dirname + '/public'));
 
 var chats = [];
 var Tile = require('./models/Tile');
@@ -23,14 +23,9 @@ function getIP(req) {
 }
 
 app.post('/maze', function(req, res) {
-  tiles = [{
-    "x": 1,
-    "y": 4,
-    "type": "arrggg",
-    "rotation": 90
-  }];
-  console.log(getIP(req), 'post maze', req.body);
+  tiles = [];
 
+  console.log(getIP(req), 'post maze', req.body);
   req.body.tiles.forEach(function(t) {
     var tile = new Tile(t);
     console.log('new tile: ', tile);

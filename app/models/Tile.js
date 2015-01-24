@@ -15,5 +15,5 @@ module.exports = function Tile(ref) {
   this.dors = ref.openedDoors;
   this.traps = ref.traps || [];
   this.rotation = rotation;
-  doors = tileDoorMap[this.tileType].split('');
+  this.doors = tileDoorMap[this.tileType].split('');
 };

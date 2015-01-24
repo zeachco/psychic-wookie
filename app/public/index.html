@@ -5,6 +5,7 @@
   <title>Helper UI</title>
   <link rel="stylesheet" type="text/css" href="/libs/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/libs/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
   <script src="libs/angularjs/angular.min.js"></script>
   <script src="js/controller.js"></script>
 </head>
@@ -14,16 +15,19 @@
     <div class="header">
       <h1>Are you trustworthy?</h1>
     </div>
-    <form ng-submit="sendMsg()" class="input-group">
-      <span class="input-group-addon" id="basic-addon2">messages</span>
-      <input type="text" autofocus="true" class="form-control" ng-model="message" placeholder="send message" aria-describedby="basic-addon2">
-      <div class="input-group-btn">
-        <input class="btn btn-default" type="submit">Send</button>
-      </div>
-    </form>
+    <svg></svg>
     <div ng-repeat="tile in tiles">
       {{tile}}
     </div>
+    <footer class="container well">
+      <form ng-submit="sendMsg()" class="input-group">
+        <span class="input-group-addon" id="basic-addon2">messages</span>
+        <input type="text" autofocus="true" class="form-control" ng-model="message" placeholder="send message" aria-describedby="basic-addon2">
+        <div class="input-group-btn">
+          <input class="btn btn-default" type="submit">Send</button>
+        </div>
+      </form>
+    </footer>
   </div>
 </body>
 
