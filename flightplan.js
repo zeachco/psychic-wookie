@@ -1,4 +1,3 @@
-// flightplan.js
 var plan = require('flightplan');
 
 plan.target('nodium', [{
