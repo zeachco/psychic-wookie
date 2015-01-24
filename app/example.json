@@ -1,0 +1,41 @@
+{
+  "startTileId": 1,
+  "goalTileId": 3,
+  "tiles": [{
+    "tileId": 1,
+    "x": 0.002458639,
+    "y": -0.09882116,
+    "tileType": "TypeA",
+    "rotation": 0,
+    "openedDoors": {
+      "N": true,
+      "S": true,
+      "W": false,
+      "E": false
+    }
+  }, {
+    "tileId": 2,
+    "x": 0.002458639,
+    "y": -0.09882116,
+    "tileType": "TypeB",
+    "rotation": 0,
+    "openedDoors": {
+      "N": false,
+      "S": true,
+      "W": false,
+      "E": true
+    }
+  }, {
+    "tileId": 3,
+    "x": 1.502459,
+    "y": -0.09882116,
+    "tileType": "TypeC",
+    "rotation": 0,
+    "openedDoors": {
+      "N": false,
+      "S": true,
+      "W": true,
+      "E": true
+    }
+  }]
+}

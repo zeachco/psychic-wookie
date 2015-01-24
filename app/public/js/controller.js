@@ -2,6 +2,7 @@ var app = angular.module('helper', []);
 
 app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
   $scope.tiles = [];
+  $scope.events = [];
 
   Factory.getMaze(function(data) {
     console.debug(data);
@@ -11,14 +12,17 @@ app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
   $scope.sendMsg = function() {
     Factory.sendMsg($scope.message, function() {
       $scope.message = '';
-      console.log('ok');
     });
   };
 
-  Factory.getMaze(function(data) {
-    console.debug(data);
-    $scope.tiles = data;
-  });
+  function fetchEvents(data){
+    $scope.events = data;
+    setTimeout(function(){
+      Factory.getEvents(fetchEvents);
+    },1);
+  }
+
+  Factory.getEvents(fetchEvents);
 
 }]);
 
@@ -27,6 +31,15 @@ function Factory($http) {
     getMaze: function(callback) {
       $http.get('/maze').success(function(data) {
         callback(data);
+      });
+    },
+    getEvents: function(callback) {
+      $http.get('/events').success(function(data) {
+        callback(data);
+      }).error(function(data){
+        setTImeout(function(){
+          callback(data);
+        }, 1000);
       });
     },
     sendMsg: function(msg, callback) {

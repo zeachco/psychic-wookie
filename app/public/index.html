@@ -16,6 +16,9 @@
       <h1>Are you trustworthy?</h1>
     </div>
     <svg></svg>
+    <div ng-repeat="event in events.messages">
+      {{event.user}} : {{event.message}}
+    </div>
     <div ng-repeat="tile in tiles">
       {{tile}}
     </div>
