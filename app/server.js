@@ -51,6 +51,9 @@ app.post('/maze', function(req, res) {
       }
 
     });
+
+    publish({maze: true});
+
   }catch(e){
     console.log(e);
   }

@@ -17,6 +17,13 @@ app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
 
   function fetchEvents(data){
     $scope.events = data;
+    if(data.maze) { 
+      Factory.getMaze(function(data) {
+        console.debug(data);
+        $scope.tiles = data;
+      });
+    }
+
     setTimeout(function(){
       Factory.getEvents(fetchEvents);
     },1);
