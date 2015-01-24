@@ -8,9 +8,11 @@ var tileDoorMap = {
 };
 
 module.exports = function Tile(ref) {
+  this.id = ref.tileId;
   this.x = ref.x;
   this.y = ref.y;
-  this.type = ref.type || 1;
+  this.type = ref.tileType;
+  this.dors = ref.openedDoors;
   this.traps = ref.traps || [];
   this.rotation = rotation;
   doors = tileDoorMap[this.tileType].split('');

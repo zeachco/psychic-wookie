@@ -8,6 +8,7 @@ plan.target('nodium', [{
 }]);
 
 var tmpDir = 'release-' + new Date().getTime();
+var tmpDir = 'app';
 
 // run commands on localhost
 plan.local(function(local) {
@@ -41,7 +42,6 @@ plan.remote(function(remote) {
   remote.sudo('npm --production --prefix ~/' + tmpDir + ' install ~/' + tmpDir);
 
   remote.log('Reload application');
-  remote.sudo('ln -snf ~/' + tmpDir + ' ~/app');
-  remote.sudo('ls ~/app');
+  //remote.sudo('ln -snf ~/' + tmpDir + ' ~/app');
   // remote.sudo('pm2 reload example-com'); */
 });
