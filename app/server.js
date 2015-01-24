@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var serverPort = 3000;
+var serveIndex = require('serve-index');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -9,6 +10,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.static(__dirname + '/public'));
+app.use(serveIndex(__dirname + '/public'));
 
 var chats = [];
 var Tile = require('./models/Tile');

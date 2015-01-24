@@ -12,9 +12,19 @@ var tmpDir = 'release-' + new Date().getTime();
 // run commands on localhost
 plan.local(function(local) {
   //local.log('Run build');
-  //local.exec('gulp build');
+  //local.exec('gulp');
   local.log('Copy files to remote hosts');
-  var filesToCopy = local.exec('git ls-files', {
+
+  var ex = 'git ls-files';
+  [
+    '/libs/bootstrap/dist/css/bootstrap.min.css',
+    '/libs/bootstrap/dist/css/bootstrap-theme.min.css',
+    '/libs/angularjs/angular.min.js'
+  ].forEach(function(l) {
+    ex += ' && echo app/public' + l + '';
+  });
+  console.log(ex);
+  var filesToCopy = local.exec(ex, {
     silent: true
   });
   // rsync files to all the target's remote hosts
@@ -33,5 +43,5 @@ plan.remote(function(remote) {
   remote.log('Reload application');
   remote.sudo('ln -snf ~/' + tmpDir + ' ~/app');
   remote.sudo('ls ~/app');
-  //remote.sudo('pm2 reload example-com');
+  // remote.sudo('pm2 reload example-com'); */
 });
