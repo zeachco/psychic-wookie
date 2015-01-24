@@ -20,7 +20,7 @@
       {{event.user}} : {{event.message}}
     </div>
     <div ng-repeat="tile in tiles">
-      {{tile}}
+      {{tile.id}}- {{tile.type}} ({{tile.x}}, {{tile.y}}) ; {{tile.traps.length}} trap(s)
     </div>
     <footer class="container well">
       <form ng-submit="sendMsg()" class="input-group">

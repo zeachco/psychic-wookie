@@ -21,7 +21,6 @@ app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
       Factory.getEvents(fetchEvents);
     },1);
   }
-
   Factory.getEvents(fetchEvents);
 
 }]);
@@ -37,7 +36,7 @@ function Factory($http) {
       $http.get('/events').success(function(data) {
         callback(data);
       }).error(function(data){
-        setTImeout(function(){
+        setTimeout(function(){
           callback(data);
         }, 1000);
       });
