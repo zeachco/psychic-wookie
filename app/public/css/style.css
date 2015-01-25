@@ -1,7 +1,14 @@
 body{
   padding-bottom: 4em;
+  text-align:center;
 }
 footer{
   position:fixed;
   bottom:0px;
+}
+
+svg{
+  max-width:98%;
+  box-shadow: 0 0 5px #888;
+  border-radius: 30px;
 }

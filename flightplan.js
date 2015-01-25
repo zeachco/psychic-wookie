@@ -20,7 +20,8 @@ plan.local(function(local) {
     '/libs/bootstrap/dist/css/bootstrap.min.css',
     '/libs/bootstrap/dist/css/bootstrap-theme.min.css',
     '/libs/angularjs/angular.min.js',
-    '/libs/angularjs/angular.min.js.map'
+    '/libs/angularjs/angular.min.js.map',
+    '/libs/d3/d3.min.js'
   ].forEach(function(l) {
     ex += ' && echo app/public' + l + '';
   });

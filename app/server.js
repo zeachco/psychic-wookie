@@ -35,6 +35,13 @@ app.get('/maze', function(req, res) {
   res.json(tiles);
 });
 
+
+
+app.post('/player', function(req, res) {
+  var ip = getIP(req);
+
+});
+
 app.post('/maze', function(req, res) {
   var ip = getIP(req);
   tiles = [];
@@ -64,13 +71,12 @@ app.post('/maze', function(req, res) {
 });
 
 app.post('/message', function(req, res) {
-  var ip = getIP(req);
-
+  var ip = req.body.user;
   console.log(ip + ' :', req.body.message);
-  messages.push({
-    user: ip,
-    message: req.body.message
-  });
+
+  if(req.body.message.length>0){
+    messages.push(ip + ': ' + req.body.message);
+  }
 
   publish({
     messages: messages
