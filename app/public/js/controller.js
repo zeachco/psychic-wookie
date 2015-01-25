@@ -1,20 +1,17 @@
 var app = angular.module('helper', []);
 
-app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
+app.controller('mapCtrl', ['$scope', 'REST', function($scope, REST) {
   $scope.tiles = [];
   $scope.events = [];
   $scope.user = '';
 
-  $scope.$watch('selectedTile', function() {
-    console.log(arguments);
-  });
-
-  $scope.triggerTrap = function(){
-    console.log(this, arguments);
+  $scope.triggerTrap = function(d) {
+    REST.activateTrap($scope.user, d ,function(){
+      alert('you evil!');
+    });
   };
 
   window.selectTile = function(clicked) {
-    console.log('angular', this, clicked.id);
     $scope.selectedTile = null;
     $scope.tiles.forEach(function(d) {
       if (d.id == clicked.id) {
@@ -23,7 +20,7 @@ app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
     });
   };
 
-  Factory.getMaze(function(data) {
+  REST.getMaze(function(data) {
     $scope.tiles = data;
     updateMap(data);
   });
@@ -36,7 +33,7 @@ app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
       $scope.enableChat = false;
     }
 
-    Factory.sendMsg($scope.user, $scope.message, function() {
+    REST.sendMsg($scope.user, $scope.message, function() {
       $scope.enableChat = true;
       $scope.message = '';
     });
@@ -47,22 +44,22 @@ app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
     $scope.events = data;
 
     if (data.maze) {
-      Factory.getMaze(function(data) {
+      REST.getMaze(function(data) {
         $scope.tiles = data;
         updateMap(data);
       });
     }
 
     setTimeout(function() {
-      Factory.getEvents(fetchEvents);
+      REST.getEvents(fetchEvents);
     }, 1);
 
   }
-  Factory.getEvents(fetchEvents);
+  REST.getEvents(fetchEvents);
 
 }]);
 
-function Factory($http) {
+function REST($http) {
   return {
     getMaze: function(callback) {
       $http.get('/maze').success(function(data) {
@@ -87,8 +84,18 @@ function Factory($http) {
       }).error(function(data) {
         callback(data);
       });
+    },
+    activateTrap: function(user, trap, callback) {
+      $http.post('trap', {
+        user: user,
+        id: trap.id
+      }).success(function(data) {
+        callback(data);
+      }).error(function(data) {
+        callback(data);
+      });
     }
   };
 }
 
-app.factory('Factory', ['$http', Factory]);
+app.factory('REST', ['$http', REST]);

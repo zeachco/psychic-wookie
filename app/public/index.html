@@ -20,7 +20,7 @@
     <svg ng-click=""></svg>
     <form id="popup">
       <div ng-repeat="trap in selectedTile.traps">
-        <button ng-click="triggerTrap({{trap.id}})" class="btn btn-danger">Activate {{trap.trapType}} trap</button>
+        <button ng-click="triggerTrap(this.trap)" class="btn btn-danger">Activate {{trap.trapType}} trap</button>
       </div>
     </form>
     <footer class="container">

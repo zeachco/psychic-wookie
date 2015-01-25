@@ -78,6 +78,16 @@ app.post('/maze', function(req, res) {
 
   res.end('ok');
 });
+app.post('/trap', function(req, res) {
+  var ip = req.body.user || getIP(req);
+  traps.push({
+    trapId: req.body.id,
+    action: 'activate'
+  });
+  publish({
+    traps: traps
+  });
+});
 
 app.post('/message', function(req, res) {
   var ip = req.body.user || getIP(req);
