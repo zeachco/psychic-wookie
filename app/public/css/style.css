@@ -1,16 +1,22 @@
-body{
+body {
   padding-bottom: 4em;
-  text-align:center;
+  text-align: center;
 }
-footer{
-  position:fixed;
-  bottom:0px;
+footer {
+  position: fixed;
+  bottom: 0px;
 }
-
-svg{
+svg {
   max-width: 98%;
   box-shadow: 0 0 10px #ddd;
   border-radius: 6px;
   overflow: auto;
   min-width: 640px;
+}
+svg g.tile {
+  cursor: pointer;
+  opacity: 0.5;
+}
+svg g.tile:hover {
+  opacity: 1;
 }

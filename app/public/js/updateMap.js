@@ -1,6 +1,6 @@
 function updateMap(data) {
-  var gridw = 64;
-  var gridh = 48;
+  var uw = 30;
+  var uh = 30;
   var gw = 640;
   var gh = 480;
 
@@ -13,11 +13,15 @@ function updateMap(data) {
   var yvalues = data.map(function(d) {
     return d.y;
   });
+
   var top = d3.min(yvalues) - 2;
   var bottom = d3.max(yvalues) + 2;
 
-  var xratio = gw / (right - left) / gridw;
-  var yratio = gh / (bottom - top) / gridh;
+  var virtualWidth = right - left;
+  var virtualHeight = bottom - top;
+
+  var xratio = gw / virtualWidth;
+  var yratio = gh / virtualHeight;
 
   console.log(xratio, yratio);
 
@@ -26,24 +30,29 @@ function updateMap(data) {
     .attr('width', gw)
     .attr('height', gh)
     .selectAll('g').data(data);
-  var newtile = tiles.enter().append('g');
+  var newtile = tiles.enter().append('g').attr('class', 'tile');
   newtile.append('rect');
   newtile.append('text');
 
+  tiles
+    .on('click', function(d) {
+      console.log(this);
+    });
   tiles.select('text')
     .text(function(d) {
       return d.id;
     });
   tiles.select('rect')
     .attr("x", function(d) {
-      return d.x * gridw * xratio;
+      return left + d.x * xratio;
     })
     .attr("y", function(d) {
-      return d.y * gridh * yratio;
+      return top + d.y * yratio;
     })
-    .attr("opacity", 0.2)
-    .attr("width", gridw*0.9)
-    .attr("height", gridh*0.9)
-    .attr("fill", 'blue');
+    .attr("width", 40)
+    .attr("height", 40)
+    .attr("fill", function(d) {
+      return d.havePlayer ? 'yellow' : 'blue';
+    });
 
 }

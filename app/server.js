@@ -24,22 +24,29 @@ function getIP(req) {
   return ip.replace('::ffff:', '');
 }
 
-function publish(data){
-    while (keepalives.length > 0) {
-      var cb = keepalives.splice(0, 1)[0];
-      cb(data);
-    }
+function publish(data) {
+  while (keepalives.length > 0) {
+    var cb = keepalives.splice(0, 1)[0];
+    cb(data);
+  }
 }
 
 app.get('/maze', function(req, res) {
   res.json(tiles);
 });
 
-
-
 app.post('/player', function(req, res) {
-  var ip = getIP(req);
+  ip = getIP(req);
+  console.log(ip, '/player', req.body);
+  tiles.forEach(function(t) {
+    t.havePlayer = (t.id == req.body.roomId);
+  });
 
+  publish({
+    maze: true
+  });
+
+  res.end('ok');
 });
 
 app.post('/maze', function(req, res) {
@@ -48,20 +55,22 @@ app.post('/maze', function(req, res) {
 
   gameIP = ip;
   console.log(ip, 'post maze', req.body.tiles, req.body);
-  try{
+  try {
     req.body.tiles.forEach(function(t) {
 
       console.log('new tile: ', t);
-      if(t){
+      if (t) {
         var tile = new Tile(t);
         tiles.push(tile);
       }
 
     });
 
-    publish({maze: true});
+    publish({
+      maze: true
+    });
 
-  }catch(e){
+  } catch (e) {
     console.log(e);
   }
 
@@ -74,7 +83,7 @@ app.post('/message', function(req, res) {
   var ip = req.body.user || getIP(req);
   console.log(ip + ' :', req.body.message);
 
-  if(req.body.message.length>0){
+  if (req.body.message.length > 0) {
     messages.push(ip + ': ' + req.body.message);
   }
 
@@ -82,7 +91,7 @@ app.post('/message', function(req, res) {
     messages: messages
   });
 
-  if(ip == gameIP){
+  if (ip == gameIP) {
     messages = [];
   }
 
@@ -93,7 +102,7 @@ app.get('/events', function(req, res) {
   var ip = getIP(req);
 
   function keepalive(data) {
-    if(ip == gameIP){
+    if (ip == gameIP) {
       console.log(ip, 'client fetch', data);
     }
     try {
@@ -104,11 +113,11 @@ app.get('/events', function(req, res) {
     }
   }
 
-  if(connexions[ip]){
+  if (connexions[ip]) {
     connexions[ip].refreshTime = new Date();
     console.log(ip, 'holding connexion', connexions[ip]);
     keepalives.push(keepalive);
-  }else{
+  } else {
     var d = new Date();
     connexions[ip] = {
       connectedTime: d,
