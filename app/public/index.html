@@ -17,11 +17,10 @@
     <div class="header">
       <h1>Are you trustworthy?</h1>
     </div>
-    <svg></svg>
+    <svg ng-click=""></svg>
     <form id="popup">
-      <pre>{{selectedTile}}</pre>
       <div ng-repeat="trap in selectedTile.traps">
-        {{trap}}
+        <button ng-click="triggerTrap({{trap.id}})" class="btn btn-danger">Activate {{trap.trapType}} trap</button>
       </div>
     </form>
     <footer class="container">

@@ -6,7 +6,12 @@ app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
   $scope.user = '';
 
   $scope.$watch('selectedTile', function() {
+    console.log(arguments);
   });
+
+  $scope.triggerTrap = function(){
+    console.log(this, arguments);
+  };
 
   window.selectTile = function(clicked) {
     console.log('angular', this, clicked.id);

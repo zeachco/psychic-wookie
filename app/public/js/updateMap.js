@@ -49,7 +49,10 @@ function updateMap(data) {
     .attr("width", 40)
     .attr("height", 40)
     .attr("fill", function(d) {
-      return d.havePlayer ? 'yellow' : 'blue';
+      if(d.havePlayer){
+        return 'orange';
+      }
+      return d.traps.length>0 ? 'blue' : 'green';
     });
 
 }
