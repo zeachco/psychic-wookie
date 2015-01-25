@@ -7,15 +7,15 @@ function updateMap(data) {
   var xvalues = data.map(function(d) {
     return d.x;
   });
-  var left = d3.min(xvalues) - 2;
-  var right = d3.max(xvalues) + 2;
+  var left = d3.min(xvalues) -50;
+  var right = d3.max(xvalues) +1;
 
   var yvalues = data.map(function(d) {
     return d.y;
   });
 
-  var top = d3.min(yvalues) - 2;
-  var bottom = d3.max(yvalues) + 2;
+  var top = d3.min(yvalues) -5;
+  var bottom = d3.max(yvalues) +5;
 
   var virtualWidth = right - left;
   var virtualHeight = bottom - top;
@@ -41,10 +41,10 @@ function updateMap(data) {
     });
   tiles.select('rect')
     .attr("x", function(d) {
-      return left + d.x * xratio;
+      return 40 + d.x * xratio;
     })
     .attr("y", function(d) {
-      return top + d.y * yratio;
+      return 40 + d.y * yratio;
     })
     .attr("width", 40)
     .attr("height", 40)
@@ -52,7 +52,7 @@ function updateMap(data) {
       if(d.havePlayer){
         return 'orange';
       }
-      return d.traps.length>0 ? 'blue' : 'green';
+      return d.traps.length>0 ? 'blue' : 'black';
     });
 
 }
