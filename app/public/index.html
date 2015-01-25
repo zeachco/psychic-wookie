@@ -17,15 +17,19 @@
     </div>
     <svg></svg>
     <div ng-repeat="event in events.messages">
-      {{event.user}} : {{event.message}}
+      <b>{{event.user}} :</b> {{event.message}}
     </div>
     <div ng-repeat="tile in tiles">
       {{tile.id}}- {{tile.type}} ({{tile.x}}, {{tile.y}}) ; {{tile.traps.length}} trap(s)
+      <span ng-if="tile.doors.N">&#8657;</span>
+      <span ng-if="tile.doors.E">&#8658;</span>
+      <span ng-if="tile.doors.S">&#8659;</span>
+      <span ng-if="tile.doors.W">&#8656;</span>
     </div>
-    <footer class="container well">
+    <footer class="container">
       <form ng-submit="sendMsg()" class="input-group">
         <span class="input-group-addon" id="basic-addon2">messages</span>
-        <input type="text" autofocus="true" class="form-control" ng-model="message" placeholder="send message" aria-describedby="basic-addon2">
+        <input type="text" autofocus="true" class="form-control" ng-model="message" placeholder="write good or evil..." aria-describedby="basic-addon2">
         <div class="input-group-btn">
           <input class="btn btn-default" type="submit">Send</button>
         </div>
