@@ -6,7 +6,7 @@ var gh = 480;
 function updateWindow(){
   gw = w.innerWidth || e.clientWidth || g.clientWidth;
   gh = w.innerHeight|| e.clientHeight|| g.clientHeight;
-  
+
 }
 window.onresize = updateWindow;
 
@@ -37,7 +37,9 @@ function updateMap(data) {
   var tiles = d3.select('svg')
     .attr('width', gw)
     .attr('height', gh)
-    .selectAll('g').data(data);
+    .select('g')
+    .selectAll('g').data(data)
+  ;
   var newtile = tiles.enter().append('g').attr('class', 'tile');
   newtile.append('rect');
   newtile.append('text');
