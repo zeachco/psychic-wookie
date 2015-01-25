@@ -5,6 +5,19 @@ app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
   $scope.events = [];
   $scope.user = '';
 
+  $scope.$watch('selectedTile', function() {
+  });
+
+  window.selectTile = function(clicked) {
+    console.log('angular', this, clicked.id);
+    $scope.selectedTile = null;
+    $scope.tiles.forEach(function(d) {
+      if (d.id == clicked.id) {
+        $scope.selectedTile = d;
+      }
+    });
+  };
+
   Factory.getMaze(function(data) {
     $scope.tiles = data;
     updateMap(data);

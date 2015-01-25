@@ -20,3 +20,9 @@ svg g.tile {
 svg g.tile:hover {
   opacity: 1;
 }
+#popup{
+  position:fixed;
+  top:2em;
+  background:#fff;
+  padding:20px;
+}

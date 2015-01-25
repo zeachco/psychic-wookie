@@ -14,17 +14,16 @@
 
 <body>
   <div class="container">
-    <form>
-      <div>
-        <form>
-          
-        </form>
-      </div>
-    </form>
     <div class="header">
       <h1>Are you trustworthy?</h1>
     </div>
     <svg></svg>
+    <form id="popup">
+      <pre>{{selectedTile}}</pre>
+      <div ng-repeat="trap in selectedTile.traps">
+        {{trap}}
+      </div>
+    </form>
     <footer class="container">
       <div ng-repeat="message in events.messages">
         <b>{{message}}</b>

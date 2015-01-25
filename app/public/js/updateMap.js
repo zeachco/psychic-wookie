@@ -34,10 +34,7 @@ function updateMap(data) {
   newtile.append('rect');
   newtile.append('text');
 
-  tiles
-    .on('click', function(d) {
-      console.log(this);
-    });
+  tiles.on('click', selectTile);
   tiles.select('text')
     .text(function(d) {
       return d.id;
