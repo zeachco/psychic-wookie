@@ -6,7 +6,7 @@ app.controller('mapCtrl', ['$scope', 'REST', function($scope, REST) {
   $scope.user = '';
 
   $scope.triggerTrap = function(d) {
-    REST.activateTrap($scope.user, d ,function(){
+    REST.activateTrap($scope.user, d.trapId ,function(){
       alert('you evil!');
     });
   };
@@ -88,7 +88,7 @@ function REST($http) {
     activateTrap: function(user, trap, callback) {
       $http.post('trap', {
         user: user,
-        id: trap.id
+        id: trap
       }).success(function(data) {
         callback(data);
       }).error(function(data) {
