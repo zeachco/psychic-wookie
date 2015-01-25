@@ -15,7 +15,7 @@ svg {
 }
 svg g.tile {
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 svg g.tile:hover {
   opacity: 1;

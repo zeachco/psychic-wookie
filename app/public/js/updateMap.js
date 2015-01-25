@@ -52,7 +52,7 @@ function updateMap(data) {
       if(d.havePlayer){
         return 'orange';
       }
-      return d.traps.length>0 ? 'blue' : 'black';
+      return d.traps.length>0 ? 'blue' : '#ddd';
     });
 
 }

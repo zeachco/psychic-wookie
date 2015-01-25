@@ -82,9 +82,10 @@ app.post('/maze', function(req, res) {
 app.post('/trap', function(req, res) {
   var ip = req.body.user || getIP(req);
   console.log(req.body);
+
   traps.push({
     trapId: req.body.id,
-    action: 'enable'
+    action: req.body.enable ? 'enable' : 'disable'
   });
   console.log('activating traps', traps);
   publish({

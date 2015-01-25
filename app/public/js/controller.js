@@ -5,9 +5,14 @@ app.controller('mapCtrl', ['$scope', 'REST', function($scope, REST) {
   $scope.events = [];
   $scope.user = '';
 
-  $scope.triggerTrap = function(d) {
-    REST.activateTrap($scope.user, d.trapId ,function(){
-      alert('you evil!');
+  $scope.triggerTrap = function(enable, d) {
+    REST.activateTrap($scope.user, enable, d.trapId ,function(){
+      d.enable = enable;
+      if(enable){
+        alert('you evil!');
+      }else{
+        alert('fiou! you\'re a savior');
+      }
     });
   };
 
@@ -85,8 +90,9 @@ function REST($http) {
         callback(data);
       });
     },
-    activateTrap: function(user, trap, callback) {
+    activateTrap: function(user, enable, trap, callback) {
       $http.post('trap', {
+        enable: enable,
         user: user,
         id: trap
       }).success(function(data) {
