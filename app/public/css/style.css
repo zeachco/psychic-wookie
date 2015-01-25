@@ -23,9 +23,11 @@ svg g.tile:hover {
 #popup{
   position:fixed;
   top:0;
-  left:0;
-  opacity:0.6;
+  opacity:0.8;
 }
 #popup:hover{
   opacity:1;
+}
+.btn-row{
+  padding: 0.5em;
 }
