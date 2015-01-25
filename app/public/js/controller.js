@@ -15,9 +15,11 @@ app.controller('mapCtrl', ['$scope', 'Factory', function($scope, Factory) {
     if (!$scope.user) {
       $scope.user = $scope.message;
       $scope.message = ' I just connected';
+      $scope.enableChat = false;
     }
 
     Factory.sendMsg($scope.user, $scope.message, function() {
+      $scope.enableChat = true;
       $scope.message = '';
     });
 
@@ -63,6 +65,8 @@ function Factory($http) {
         user: user,
         message: msg
       }).success(function(data) {
+        callback(data);
+      }).error(function(data) {
         callback(data);
       });
     }

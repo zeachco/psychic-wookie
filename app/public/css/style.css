@@ -8,7 +8,9 @@ footer{
 }
 
 svg{
-  max-width:98%;
-  box-shadow: 0 0 5px #888;
-  border-radius: 30px;
+  max-width: 98%;
+  box-shadow: 0 0 10px #ddd;
+  border-radius: 6px;
+  overflow: auto;
+  min-width: 640px;
 }

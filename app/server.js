@@ -71,7 +71,7 @@ app.post('/maze', function(req, res) {
 });
 
 app.post('/message', function(req, res) {
-  var ip = req.body.user;
+  var ip = req.body.user || getIP(req);
   console.log(ip + ' :', req.body.message);
 
   if(req.body.message.length>0){
