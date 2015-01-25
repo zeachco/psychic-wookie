@@ -41,13 +41,8 @@ function updateMap(data) {
     .selectAll('g').data(data);
   var newtile = tiles.enter().append('g').attr('class', 'tile');
   newtile.append('rect');
-  newtile.append('text');
 
   tiles.on('click', selectTile);
-  tiles.select('text')
-    .text(function(d) {
-      return d.id;
-    });
   tiles.select('rect')
     .attr("x", function(d) {
       return 40 + d.x * xratio;
