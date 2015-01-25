@@ -14,6 +14,7 @@ app.use(express.static(__dirname + '/public'));
 var chats = [];
 var Tile = require('./models/Tile');
 var tiles = [];
+var traps = [];
 var messages = [];
 var keepalives = [];
 var gameIP = '';
@@ -87,6 +88,7 @@ app.post('/trap', function(req, res) {
   publish({
     traps: traps
   });
+  res.end('ok');
 });
 
 app.post('/message', function(req, res) {
