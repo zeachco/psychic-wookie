@@ -91,6 +91,7 @@ app.post('/trap', function(req, res) {
   publish({
     traps: traps
   });
+  traps = [];
   res.end('ok');
 });
 
