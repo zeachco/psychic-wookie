@@ -67,6 +67,8 @@ app.post('/maze', function(req, res) {
 
     });
 
+    messages = [];
+
     publish({
       maze: true
     });
