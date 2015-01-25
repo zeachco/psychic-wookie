@@ -1,7 +1,7 @@
 var uw = 30;
 var uh = 30;
 var gw = 640;
-var gh = 480;
+var gh = 640;
 
 function updateWindow(){
   gw = w.innerWidth || e.clientWidth || g.clientWidth;
