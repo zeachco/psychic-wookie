@@ -130,7 +130,7 @@ app.get('/events', function(req, res) {
   }
 
   if (connexions[ip]) {
-    connexions[ip].refreshTime = new Date();
+    connexions[ip].refreshTime = new Date().toDateString();
     console.log(ip, 'holding connexion', connexions[ip]);
     keepalives.push(keepalive);
   } else {
