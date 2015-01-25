@@ -53,6 +53,9 @@ function updateMap(data) {
     .attr("width", 40)
     .attr("height", 40)
     .attr("fill", function(d) {
+      if(d.id == 35){
+        return 'green';
+      }
       if(d.havePlayer){
         return 'orange';
       }
