@@ -1,8 +1,16 @@
+var uw = 30;
+var uh = 30;
+var gw = 640;
+var gh = 480;
+
+function updateWindow(){
+  gw = w.innerWidth || e.clientWidth || g.clientWidth;
+  gh = w.innerHeight|| e.clientHeight|| g.clientHeight;
+  
+}
+window.onresize = updateWindow;
+
 function updateMap(data) {
-  var uw = 30;
-  var uh = 30;
-  var gw = 640;
-  var gh = 480;
 
   var xvalues = data.map(function(d) {
     return d.x;

@@ -11,7 +11,7 @@ svg {
   box-shadow: 0 0 10px #ddd;
   border-radius: 6px;
   overflow: auto;
-  min-width: 640px;
+  /*min-width: 640px;*/
 }
 svg g.tile {
   cursor: pointer;
