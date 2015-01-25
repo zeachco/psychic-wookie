@@ -85,7 +85,7 @@ app.post('/trap', function(req, res) {
 
   traps.push({
     trapId: req.body.id,
-    action: req.body.enable ? 'enable' : 'disable'
+    active: req.body.enable
   });
   console.log('activating traps', traps);
   publish({
