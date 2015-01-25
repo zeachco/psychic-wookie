@@ -38,8 +38,7 @@ function updateMap(data) {
     .attr('width', gw)
     .attr('height', gh)
     .select('g')
-    .selectAll('g').data(data)
-  ;
+    .selectAll('g').data(data);
   var newtile = tiles.enter().append('g').attr('class', 'tile');
   newtile.append('rect');
   newtile.append('text');
