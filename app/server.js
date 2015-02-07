@@ -68,6 +68,9 @@ app.post('/maze', function(req, res) {
     });
 
     messages = [];
+    tiles.forEach(function(t) {
+      t.havePlayer = false;
+    });
 
     publish({
       maze: true
